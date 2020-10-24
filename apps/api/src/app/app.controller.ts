@@ -1,15 +1,22 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 
-import { Message } from '@hk/api-interfaces';
+import { Message, SiteConfiguration } from '@hk/interfaces';
 
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor( private readonly appService: AppService ) { }
 
-  @Get('hello')
-  getData(): Message {
-    return this.appService.getData();
-  }
+    @Get( 'hello' )
+    getData (): Message {
+        return this.appService.getData();
+    }
+
+    @Get( 'configuration' )
+    getSiteConfiguration ( @Query( 'domain' ) domain ): SiteConfiguration {
+        return this.appService.getSiteConfiguration( domain );
+    }
+
+
 }

@@ -1,8 +1,13 @@
-<div style="text-align: center;">
+<!-- <div style="text-align: center;">
   <h1>Welcome to multisite!</h1>
   <img
     width="450"
     src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
   />
-</div>
+</div> -->
+<hk-header *ngIf="themeName" [theme]="themeName" [title]="themeName"></hk-header>
 <div>Message: {{ hello$ | async | json }}</div>
+
+<p *ngIf="theme.hasAccessToFeature('dashboard') | async">Dashboard</p>
+<p *ngIf="theme.hasAccessToFeature('profile') | async">Profile</p>
+<p *ngIf="theme.hasAccessToFeature('footer') | async">Footer</p>
