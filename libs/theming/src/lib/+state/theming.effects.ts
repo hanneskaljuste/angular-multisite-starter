@@ -20,6 +20,13 @@ export class ThemingEffects {
                     return this.service.fetchTheme( action.host ).pipe(
                         map( ( theme: SiteConfiguration ) => {
                             console.log( '###', theme );
+                            if ( !theme ) {
+                                // set 'default' theme (should be set somewhere else and imported prolly)
+                                theme = {
+                                    theme: 'default',
+                                    features: [ 'no-configuration' ]
+                                }
+                            }
                             this.service.load( theme.theme, action.isProduction );
                             return ThemingActions.loadThemingSuccess( { theming: theme } );
                         } )

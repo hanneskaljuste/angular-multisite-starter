@@ -5,9 +5,10 @@
     src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
   />
 </div> -->
-<hk-header *ngIf="themeName" [theme]="themeName" [title]="themeName"></hk-header>
-<div>Message: {{ hello$ | async | json }}</div>
+<!-- <hk-header *ngIf="themeName" [theme]="themeName" [title]="themeName"></hk-header> -->
+<!-- <div>Message: {{ hello$ | async | json }}</div> -->
 
 <p *ngIf="theme.hasAccessToFeature('dashboard') | async">Dashboard</p>
 <p *ngIf="theme.hasAccessToFeature('profile') | async">Profile</p>
 <p *ngIf="theme.hasAccessToFeature('footer') | async">Footer</p>
+<h3 *ngIf="theme.hasAccessToFeature('no-configuration') | async">No configrudation detected for given domain</h3>

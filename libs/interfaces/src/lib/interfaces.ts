@@ -7,6 +7,3 @@ export interface SiteConfiguration {
     theme: string;
     features: string[];
 }
-
-
-

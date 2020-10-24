@@ -1,6 +1,7 @@
+import { Message, SiteConfiguration } from '@hk/interfaces';
 import { Controller, Get, Query } from '@nestjs/common';
 
-import { Message, SiteConfiguration } from '@hk/interfaces';
+
 
 import { AppService } from './app.service';
 

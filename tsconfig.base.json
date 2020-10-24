@@ -21,11 +21,11 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@hk/theming": [
-                "libs/theming/src/index.ts"
-            ],
             "@hk/interfaces": [
                 "libs/interfaces/src/index.ts"
+            ],
+            "@hk/theming": [
+                "libs/theming/src/index.ts"
             ]
         }
     },

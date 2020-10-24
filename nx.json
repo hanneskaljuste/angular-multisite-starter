@@ -1,50 +1,50 @@
 {
-    "npmScope": "hk",
-    "affected": {
-        "defaultBase": "master"
+  "npmScope": "hk",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
     },
-    "implicitDependencies": {
-        "angular.json": "*",
-        "package.json": {
-            "dependencies": "*",
-            "devDependencies": "*"
-        },
-        "tsconfig.base.json": "*",
-        "tslint.json": "*",
-        ".eslintrc.json": "*",
-        "nx.json": "*"
-    },
-    "tasksRunnerOptions": {
-        "default": {
-            "runner": "@nrwl/workspace/tasks-runners/default",
-            "options": {
-                "cacheableOperations": [
-                    "build",
-                    "lint",
-                    "test",
-                    "e2e"
-                ]
-            }
-        }
-    },
-    "projects": {
-        "multisite": {
-            "tags": []
-        },
-        "multisite-e2e": {
-            "tags": [],
-            "implicitDependencies": [
-                "multisite"
-            ]
-        },
-        "api": {
-            "tags": []
-        },
-        "theming": {
-            "tags": []
-        },
-        "interfaces": {
-            "tags": []
-        }
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
     }
+  },
+  "projects": {
+    "multisite": {
+      "tags": []
+    },
+    "multisite-e2e": {
+      "tags": [],
+      "implicitDependencies": ["multisite"]
+    },
+    "api": {
+      "tags": []
+    },
+    "theming": {
+      "tags": []
+    },
+    "interfaces": {
+      "tags": []
+    },
+    "multisite-configurator": {
+      "tags": []
+    },
+    "multisite-configurator-e2e": {
+      "tags": [],
+      "implicitDependencies": ["multisite-configurator"]
+    }
+  }
 }

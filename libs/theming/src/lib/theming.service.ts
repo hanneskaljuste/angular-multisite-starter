@@ -8,14 +8,19 @@ interface Theme {
     name: string;
     loaded: boolean;
 }
-export const STORE: Theme[] = [ {
-    name: 'light',
-    loaded: false,
-},
-{
-    name: 'dark',
-    loaded: false,
-},
+export const STORE: Theme[] = [
+    {
+        name: 'light',
+        loaded: false,
+    },
+    {
+        name: 'dark',
+        loaded: false,
+    },
+    {
+        name: 'default',
+        loaded: false,
+    },
 ];
 
 
