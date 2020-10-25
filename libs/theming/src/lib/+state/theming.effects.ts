@@ -23,8 +23,13 @@ export class ThemingEffects {
                             if ( !theme ) {
                                 // set 'default' theme (should be set somewhere else and imported prolly)
                                 theme = {
+                                    id: 0,
                                     theme: 'default',
-                                    features: [ 'no-configuration' ]
+                                    features: [
+                                        {
+                                            id: 0,
+                                            name: 'no-configuration'
+                                        } ]
                                 }
                             }
                             this.service.load( theme.theme, action.isProduction );

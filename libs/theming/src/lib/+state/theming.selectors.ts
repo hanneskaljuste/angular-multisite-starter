@@ -11,8 +11,6 @@ export const getThemingState = createFeatureSelector<
     State
 >( THEMING_FEATURE_KEY );
 
-// const { selectAll, selectEntities } = themingAdapter.getSelectors();
-
 export const getThemingLoaded = createSelector(
     getThemingState,
     ( state: State ) => state.loaded
@@ -35,27 +33,5 @@ export const getThemeFeatures = createSelector(
 
 export const hasAccessToFeature = createSelector(
     getThemeFeatures,
-    ( features, props ) => features.indexOf( props.feature ) > -1
+    ( features, props ) => features.filter( feature => feature.name === props.feature ).length > 0
 )
-
-
-
-// export const getAllTheming = createSelector( getThemingState, ( state: State ) =>
-//     selectAll( state )
-// );
-
-// export const getThemingEntities = createSelector(
-//     getThemingState,
-//     ( state: State ) => selectEntities( state )
-// );
-
-// export const getSelectedId = createSelector(
-//     getThemingState,
-//     ( state: State ) => state.selectedId
-// );
-
-// export const getSelected = createSelector(
-//     getThemingEntities,
-//     getSelectedId,
-//     ( entities, selectedId ) => selectedId && entities[ selectedId ]
-// );

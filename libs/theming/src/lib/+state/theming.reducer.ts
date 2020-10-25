@@ -21,6 +21,7 @@ export interface ThemingPartialState {
 // >();
 
 export const initialState: State = {
+    id: 0,
     theme: '',
     features: [],
     loaded: false,

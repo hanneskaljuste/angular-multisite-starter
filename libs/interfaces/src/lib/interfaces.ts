@@ -4,6 +4,13 @@ export interface Message {
 
 
 export interface SiteConfiguration {
+    id: number | string;
     theme: string;
-    features: string[];
+    features: SiteFeature[];
+}
+
+
+export interface SiteFeature {
+    id: number | string;
+    name: string;
 }

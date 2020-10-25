@@ -32,7 +32,11 @@ export class ThemingService {
 
     private _themes: Theme[] = [];
     private _renderer: Renderer2;
-    constructor( rendererFactory: RendererFactory2, @Inject( DOCUMENT ) private _document, private http: HttpClient ) {
+
+    constructor(
+        rendererFactory: RendererFactory2,
+        @Inject( DOCUMENT ) private _document,
+        private _http: HttpClient ) {
         this._renderer = rendererFactory.createRenderer( null, null );
         this._initialize();
 
@@ -44,7 +48,6 @@ export class ThemingService {
                 loaded: false,
                 name: theme.name
             }
-
         } );
     }
 
@@ -52,13 +55,10 @@ export class ThemingService {
     load ( theme: string, isProduction: boolean ) {
         const promises: Promise<Theme>[] = [];
         promises.push( this._loadTheme( theme, isProduction ) );
-        // themes.forEach( theme => promises.push( this._loadTheme( theme, isProduction ) ) );
-
         return Promise.all( promises );
     }
 
     private _loadTheme ( name: string, isProduction: boolean ): Promise<Theme> {
-        console.log( '_loadTheme', name );
         return new Promise(
             resolve => {
                 if ( this._isThemeLoaded( name ) ) {
@@ -69,15 +69,12 @@ export class ThemingService {
                     resolve( this._setThemeStatus( name ) );
                 }
                 theme.onerror = () => resolve( this._setThemeStatus( name, false ) );
-
-                console.log( '_loadTheme', theme );
                 this._renderer.appendChild( this._document.getElementsByTagName( 'head' )[ 0 ], theme );
             }
         )
     }
 
     private _isThemeLoaded ( name: string ) {
-        console.log( '_isThemeLoaded', this._themes );
         return this._themes[ name ].loaded;
     }
 
@@ -106,9 +103,6 @@ export class ThemingService {
     }
 
     fetchTheme ( host ) {
-        return this.http.get( `api/configuration?domain=${host}` );
+        return this._http.get( `api/site-configuration?domain=${host}` );
     }
-
-
-
 }
