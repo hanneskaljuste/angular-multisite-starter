@@ -24,6 +24,7 @@ export class ThemingEffects {
                                 // set 'default' theme (should be set somewhere else and imported prolly)
                                 theme = {
                                     id: 0,
+                                    domain: '',
                                     theme: 'default',
                                     features: [
                                         {

@@ -16,8 +16,8 @@ import { environment } from '../environments/environment';
 
 import { ThemingModule, ThemingFacade } from '@hk/theming';
 import { DOCUMENT } from '@angular/common';
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 export function initThemes ( themingFacade: ThemingFacade, doc: Document ) {
     return () => themingFacade.loadTheme( doc.location.host, environment.production );
 }
@@ -49,6 +49,8 @@ export function initThemes ( themingFacade: ThemingFacade, doc: Document ) {
         ),
         EffectsModule.forRoot( [] ),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
+        MatButtonModule,
+        MatToolbarModule
     ],
     providers: [
         {

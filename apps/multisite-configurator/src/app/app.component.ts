@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-
-@Component({
-  selector: 'hk-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-})
+@Component( {
+    selector: 'hk-root',
+    templateUrl: './app.component.html',
+    styleUrls: [ './app.component.scss' ],
+} )
 export class AppComponent {
-  title = 'multisite-configurator';
+    title = 'multisite-configurator';
+
 }

@@ -2,11 +2,12 @@ import { Controller, Get, Logger, Query } from '@nestjs/common';
 import { SiteConfiguration } from './site-configuration.entity';
 import { SiteConfigurationService } from './site-configuration.service';
 import { Post, Put, Delete, Body, Param } from '@nestjs/common';
-import { UpdateResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 
 
 @Controller( 'site-configuration' )
 export class SiteConfigurationController {
+    private readonly logger = new Logger( SiteConfigurationController.name );
     constructor( private service: SiteConfigurationService ) { }
 
     @Get()
@@ -25,14 +26,22 @@ export class SiteConfigurationController {
     @Post()
     async create ( @Body() data: SiteConfiguration ): Promise<SiteConfiguration> {
         Logger.log( 'Got post data:' + data );
-        console.log( data );
+        this.logger.log( data );
         return this.service.create( data );
     }
     @Put( ':id' )
     async update ( @Param( 'id' ) id, @Body() data: SiteConfiguration ): Promise<UpdateResult> {
         data.id = Number( id );
-        console.log( 'Update #' + data.id )
+        this.logger.log( 'Update #' + data.id )
         return this.service.update( data );
     }
+
+    @Delete( ':id' )
+    async delete ( @Param( 'id' ) id ): Promise<DeleteResult> {
+        this.logger.log( 'Delete #' + id )
+        return this.service.delete( id );
+    }
+
+
 
 }

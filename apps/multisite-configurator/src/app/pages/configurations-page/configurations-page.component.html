@@ -1,0 +1,14 @@
+<mat-selection-list #sites [multiple]="false">
+    <mat-list-option *ngFor="let site of sites$ | async" [value]="site" (click)="selectSite(site)">
+        {{site.domain}}
+    </mat-list-option>
+</mat-selection-list>
+
+<mat-divider></mat-divider>
+
+<mat-selection-list *ngIf="selectedSite" [multiple]="false">
+    <mat-list-option *ngFor="let feature of selectedSite.features" [value]="feature">
+        {{feature.name}}
+    </mat-list-option>
+</mat-selection-list>
+<button mat-raised-button color="warn" *ngIf="selectedSite" (click)="delete(selectedSite)">Delete</button>

@@ -1,37 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { SiteConfiguration } from './site-configuration.entity';
-import { UpdateResult, DeleteResult } from 'typeorm';
+
 
 @Injectable()
 export class SiteConfigurationService {
     constructor(
         @InjectRepository( SiteConfiguration )
-        private siteConfigurationRepository: Repository<SiteConfiguration>,
+        private repository: Repository<SiteConfiguration>,
     ) { }
     async findAll (): Promise<SiteConfiguration[]> {
-        return await this.siteConfigurationRepository.find( {
+        return await this.repository.find( {
             relations: [ "features" ]
         } );
     }
 
     async findByDomain ( domain ): Promise<SiteConfiguration> {
-        return await this.siteConfigurationRepository.findOne( {
+        return await this.repository.findOne( {
             where: { domain: domain },
             relations: [ "features" ]
         } );
     }
 
     async create ( data: SiteConfiguration ): Promise<SiteConfiguration> {
-        return await this.siteConfigurationRepository.save( data );
+        return await this.repository.save( data );
     }
 
     async update ( data: SiteConfiguration ): Promise<UpdateResult> {
-        return await this.siteConfigurationRepository.update( data.id, data );
+        return await this.repository.update( data.id, data );
     }
 
     async delete ( id ): Promise<DeleteResult> {
-        return await this.siteConfigurationRepository.delete( id );
+        return await this.repository.delete( id );
     }
 }

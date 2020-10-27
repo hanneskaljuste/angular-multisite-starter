@@ -7,8 +7,22 @@
 </div> -->
 <!-- <hk-header *ngIf="themeName" [theme]="themeName" [title]="themeName"></hk-header> -->
 <!-- <div>Message: {{ hello$ | async | json }}</div> -->
-
+<mat-toolbar *ngIf="theme.hasAccessToFeature('dashboard') | async">
+    <span>My Application</span>
+</mat-toolbar>
 <p *ngIf="theme.hasAccessToFeature('dashboard') | async">Dashboard</p>
 <p *ngIf="theme.hasAccessToFeature('profile') | async">Profile</p>
 <p *ngIf="theme.hasAccessToFeature('footer') | async">Footer</p>
 <h3 *ngIf="theme.hasAccessToFeature('no-configuration') | async">No configrudation detected for given domain</h3>
+
+
+
+<div class="example-label">Raised</div>
+<div class="example-button-row">
+    <button mat-raised-button>Basic</button>
+    <button mat-raised-button color="primary">Primary</button>
+    <button mat-raised-button color="accent">Accent</button>
+    <button mat-raised-button color="warn">Warn</button>
+    <button mat-raised-button disabled>Disabled</button>
+    <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
+</div>

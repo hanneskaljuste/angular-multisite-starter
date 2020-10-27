@@ -18,6 +18,18 @@ export const STORE: Theme[] = [
         loaded: false,
     },
     {
+        name: 'deeppurple',
+        loaded: false,
+    },
+    {
+        name: 'pink',
+        loaded: false,
+    },
+    {
+        name: 'purple',
+        loaded: false,
+    },
+    {
         name: 'default',
         loaded: false,
     },

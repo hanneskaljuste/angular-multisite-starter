@@ -6,6 +6,7 @@ export interface Message {
 export interface SiteConfiguration {
     id: number | string;
     theme: string;
+    domain: string;
     features: SiteFeature[];
 }
 

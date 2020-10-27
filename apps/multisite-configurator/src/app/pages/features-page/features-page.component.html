@@ -1,0 +1,18 @@
+<mat-selection-list [multiple]="false">
+    <mat-list-option *ngFor="let feature of features$ | async" [value]="feature" (click)="openDialog(feature)">
+        {{feature.name}}
+    </mat-list-option>
+</mat-selection-list>
+
+
+<mat-divider></mat-divider>
+
+
+<form [formGroup]="featureForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <mat-form-field appearance="outline">
+        <mat-label>Add new feature</mat-label>
+        <input matInput placeholder="Set feature" formControlName="name" required>
+        <mat-icon matSuffix>send</mat-icon>
+    </mat-form-field>
+    <!-- <button mat-button color="primary">Save</button> -->
+</form>

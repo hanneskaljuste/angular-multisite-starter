@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Sure you want to delete feature?</h2>
+<mat-dialog-content class="mat-typography">
+    {{feature.name}}
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onConfirmClick()" [mat-dialog-close]="feature" cdkFocusInitial>Ok</button>
+</div>

@@ -23,6 +23,7 @@ export interface ThemingPartialState {
 export const initialState: State = {
     id: 0,
     theme: '',
+    domain: '',
     features: [],
     loaded: false,
     error: null

@@ -11,6 +11,7 @@ export class SiteFeature {
     @Column( 'varchar', {
         nullable: false,
         name: 'name',
+        unique: true
     } )
     name: string;
 }
