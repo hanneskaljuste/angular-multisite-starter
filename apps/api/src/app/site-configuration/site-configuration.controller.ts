@@ -31,8 +31,8 @@ export class SiteConfigurationController {
     }
     @Put( ':id' )
     async update ( @Param( 'id' ) id, @Body() data: SiteConfiguration ): Promise<UpdateResult> {
-        data.id = Number( id );
-        this.logger.log( 'Update #' + data.id )
+        // data.id = Number( id );
+        this.logger.log( 'Update #' + JSON.stringify( data ) )
         return this.service.update( data );
     }
 

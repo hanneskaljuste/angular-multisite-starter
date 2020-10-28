@@ -17,7 +17,7 @@ export class SiteConfiguration {
     @Column()
     theme: string;
 
-    @ManyToMany( type => SiteFeature, { cascade: true } )
+    @ManyToMany( type => SiteFeature, { cascade: true, eager: true } )
     @JoinTable( {
         name: 'site_features',
         joinColumn: { name: 'site_configuration_id', referencedColumnName: 'id' },

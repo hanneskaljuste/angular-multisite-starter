@@ -19,6 +19,9 @@ import { ConfirmDeleteDialog, FeaturesPageComponent } from './pages/features-pag
 import { MatIconModule } from '@angular/material/icon';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
+
 
 @NgModule( {
     imports: [
@@ -35,7 +38,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatListModule,
         MatDividerModule,
         MatIconModule,
-        MatDialogModule
+        MatDialogModule,
+        DragDropModule
     ],
     declarations: [ AppComponent, ConfigurationsPageComponent, FeaturesPageComponent, ConfirmDeleteDialog ],
     providers: [],

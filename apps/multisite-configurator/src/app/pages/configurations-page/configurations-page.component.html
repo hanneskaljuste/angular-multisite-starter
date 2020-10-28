@@ -6,9 +6,36 @@
 
 <mat-divider></mat-divider>
 
-<mat-selection-list *ngIf="selectedSite" [multiple]="false">
+<!-- <mat-selection-list *ngIf="selectedSite" [multiple]="false">
     <mat-list-option *ngFor="let feature of selectedSite.features" [value]="feature">
         {{feature.name}}
     </mat-list-option>
-</mat-selection-list>
-<button mat-raised-button color="warn" *ngIf="selectedSite" (click)="delete(selectedSite)">Delete</button>
+</mat-selection-list> -->
+
+
+<mat-divider></mat-divider>
+
+
+<div class="features-container" *ngIf="selectedSite">
+    <div class="example-container">
+        <h2>Available features</h2>
+
+        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="features$ | async"
+            [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of features$ |async " cdkDrag>{{item.name}}</div>
+        </div>
+    </div>
+
+
+    <div class="example-container">
+        <h2>Site {{selectedSite.domain}} features</h2>
+
+        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
+            class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of done" cdkDrag>{{item.name}}</div>
+        </div>
+    </div>
+</div>
+
+<button mat-raised-button color="primary" *ngIf="selectedSite" (click)="save()">Save</button>
+<button mat-raised-button color="warn" *ngIf="selectedSite" (click)="delete(selectedSite)">Delete site</button>
