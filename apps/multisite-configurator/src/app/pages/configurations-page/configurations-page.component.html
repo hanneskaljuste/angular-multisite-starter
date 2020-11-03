@@ -1,41 +1,59 @@
-<mat-selection-list #sites [multiple]="false">
-    <mat-list-option *ngFor="let site of sites$ | async" [value]="site" (click)="selectSite(site)">
-        {{site.domain}}
-    </mat-list-option>
-</mat-selection-list>
-
-<mat-divider></mat-divider>
-
-<!-- <mat-selection-list *ngIf="selectedSite" [multiple]="false">
-    <mat-list-option *ngFor="let feature of selectedSite.features" [value]="feature">
-        {{feature.name}}
-    </mat-list-option>
-</mat-selection-list> -->
-
-
-<mat-divider></mat-divider>
-
-
-<div class="features-container" *ngIf="selectedSite">
-    <div class="example-container">
-        <h2>Available features</h2>
-
-        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="features$ | async"
-            [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of features$ |async " cdkDrag>{{item.name}}</div>
-        </div>
-    </div>
-
-
-    <div class="example-container">
-        <h2>Site {{selectedSite.domain}} features</h2>
-
-        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
-            class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of done" cdkDrag>{{item.name}}</div>
-        </div>
-    </div>
+<div class="site-block">
+    <mat-selection-list #sites [multiple]="false">
+        <mat-list-option *ngFor="let site of sites$ | async" [value]="site" (click)="selectSite(site)">
+            {{site.domain}}
+        </mat-list-option>
+    </mat-selection-list>
 </div>
 
-<button mat-raised-button color="primary" *ngIf="selectedSite" (click)="save()">Save</button>
-<button mat-raised-button color="warn" *ngIf="selectedSite" (click)="delete(selectedSite)">Delete site</button>
+
+
+<mat-divider></mat-divider>
+<div class="site-block">
+    <form [formGroup]="siteForm" (ngSubmit)="onSubmit()">
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label>Domain</mat-label>
+                <input matInput placeholder="Domain" formControlName="domain">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label>Theme</mat-label>
+                <input matInput placeholder="Theme" formControlName="theme">
+            </mat-form-field>
+        </p>
+        <button type="submit" mat-raised-button color="primary">Save</button>
+        <button type="button" mat-raised-button color="warn" (click)="resetSiteForm()">Reset</button>
+    </form>
+</div>
+
+
+
+
+<mat-divider></mat-divider>
+<div class="site-block">
+    <div class="features-container" *ngIf="selectedSite">
+        <div class="example-container">
+            <h2>Available features</h2>
+
+            <div cdkDropList #availableFeaturesContainer="cdkDropList" [cdkDropListData]="availableFeatures"
+                [cdkDropListConnectedTo]="[siteFeaturesContainer]" class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let feature of availableFeatures " cdkDrag>{{feature.name}}</div>
+            </div>
+        </div>
+        <div class="example-container">
+            <h2>Site: {{selectedSite.domain}} features</h2>
+
+            <div cdkDropList #siteFeaturesContainer="cdkDropList" [cdkDropListData]="selectedSite.features"
+                [cdkDropListConnectedTo]="[availableFeaturesContainer]" class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let feature of selectedSite.features" cdkDrag>{{feature.name}}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <button mat-button color="primary" *ngIf="selectedSite" (click)="save()">Save</button>
+    <button mat-button color="warn" *ngIf="selectedSite" (click)="delete(selectedSite)">Delete site</button> -->
+</div>

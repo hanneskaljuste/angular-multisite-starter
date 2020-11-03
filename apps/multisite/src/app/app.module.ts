@@ -18,6 +18,59 @@ import { ThemingModule, ThemingFacade } from '@hk/theming';
 import { DOCUMENT } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Theme } from '@hk/interfaces';
+
+
+
+import { MatInputModule } from '@angular/material/input';
+
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+
+
+import { MatIconModule } from '@angular/material/icon';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
+
+export const themes: Theme[] = [
+    {
+        name: 'light',
+        loaded: false,
+    },
+    {
+        name: 'dark',
+        loaded: false,
+    },
+    {
+        name: 'deeppurple',
+        loaded: false,
+    },
+    {
+        name: 'pink',
+        loaded: false,
+    },
+    {
+        name: 'purple',
+        loaded: false,
+    },
+    {
+        name: 'default',
+        loaded: false,
+    },
+];
+
+
+
 export function initThemes ( themingFacade: ThemingFacade, doc: Document ) {
     return () => themingFacade.loadTheme( doc.location.host, environment.production );
 }
@@ -36,7 +89,7 @@ export function initThemes ( themingFacade: ThemingFacade, doc: Document ) {
         BrowserModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        ThemingModule,
+        ThemingModule.forRoot( themes ),
         StoreModule.forRoot(
             {},
             {
@@ -50,7 +103,18 @@ export function initThemes ( themingFacade: ThemingFacade, doc: Document ) {
         EffectsModule.forRoot( [] ),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
         MatButtonModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatInputModule,
+        MatSelectModule,
+        MatRadioModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatListModule,
+        MatDividerModule,
+        MatIconModule,
+        MatDialogModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     providers: [
         {
@@ -58,7 +122,8 @@ export function initThemes ( themingFacade: ThemingFacade, doc: Document ) {
             useFactory: initThemes,
             deps: [ ThemingFacade, DOCUMENT ],
             multi: true
-        }
+        },
+        MatDatepickerModule
     ],
     bootstrap: [ AppComponent ],
 } )

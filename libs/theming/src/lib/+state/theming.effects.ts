@@ -16,7 +16,6 @@ export class ThemingEffects {
             ofType( ThemingActions.loadTheme ),
             fetch( {
                 run: ( action ) => {
-                    console.log( 'Effect 1', action.host );
                     return this.service.fetchTheme( action.host ).pipe(
                         map( ( theme: SiteConfiguration ) => {
                             console.log( '###', theme );

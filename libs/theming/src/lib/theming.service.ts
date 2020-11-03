@@ -1,45 +1,43 @@
 import { Inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
+import { Theme } from '@hk/interfaces';
+import { THEME_STORE } from './teming-token';
 
 
 
-interface Theme {
-    name: string;
-    loaded: boolean;
-}
-export const STORE: Theme[] = [
-    {
-        name: 'light',
-        loaded: false,
-    },
-    {
-        name: 'dark',
-        loaded: false,
-    },
-    {
-        name: 'deeppurple',
-        loaded: false,
-    },
-    {
-        name: 'pink',
-        loaded: false,
-    },
-    {
-        name: 'purple',
-        loaded: false,
-    },
-    {
-        name: 'default',
-        loaded: false,
-    },
-];
+
+
+// export const STORE: Theme[] = [
+//     {
+//         name: 'light',
+//         loaded: false,
+//     },
+//     {
+//         name: 'dark',
+//         loaded: false,
+//     },
+//     {
+//         name: 'deeppurple',
+//         loaded: false,
+//     },
+//     {
+//         name: 'pink',
+//         loaded: false,
+//     },
+//     {
+//         name: 'purple',
+//         loaded: false,
+//     },
+//     {
+//         name: 'default',
+//         loaded: false,
+//     },
+// ];
 
 
 
-@Injectable( {
-    providedIn: 'root'
-} )
+@Injectable()
 export class ThemingService {
 
     private _themes: Theme[] = [];
@@ -48,14 +46,16 @@ export class ThemingService {
     constructor(
         rendererFactory: RendererFactory2,
         @Inject( DOCUMENT ) private _document,
+        @Inject( THEME_STORE ) private STORE: Theme[],
         private _http: HttpClient ) {
         this._renderer = rendererFactory.createRenderer( null, null );
         this._initialize();
 
+
     }
 
     private _initialize () {
-        STORE.forEach( ( theme: Theme ) => {
+        this.STORE.forEach( ( theme: Theme ) => {
             this._themes[ theme.name ] = {
                 loaded: false,
                 name: theme.name

@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
 import { SiteFeature } from '../site-feature/site-feature.entity';
 
 
-@Entity( 'site-configuration' )
+@Entity( { name: 'site' } )
 export class SiteConfiguration {
     @PrimaryGeneratedColumn( {
         type: 'int',
@@ -19,9 +19,27 @@ export class SiteConfiguration {
 
     @ManyToMany( type => SiteFeature, { cascade: true, eager: true } )
     @JoinTable( {
-        name: 'site_features',
-        joinColumn: { name: 'site_configuration_id', referencedColumnName: 'id' },
-        inverseJoinColumn: { name: 'site_feature_id', referencedColumnName: 'id' },
+        name: 'site_feature',
+        joinColumn: { name: 'site_id', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'feature_id', referencedColumnName: 'id' },
     } )
+    @JoinColumn( { name: 'feature_id' } )
     features: SiteFeature[];
+
+    // @ManyToMany( type => SiteFeature, feature => feature.configurations, {
+    //     cascade: true
+    // } )
+    // @JoinTable( {
+    //     name: 'site_configuration_features',
+    //     joinColumn: {
+    //         name: 'siteConfigurationId',
+    //         referencedColumnName: 'id',
+    //     },
+    //     inverseJoinColumn: {
+    //         name: 'siteFeatureId',
+    //         referencedColumnName: 'id',
+    //     },
+    // } )
+    // features: SiteFeature[];
+
 }

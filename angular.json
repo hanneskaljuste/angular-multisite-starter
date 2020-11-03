@@ -49,7 +49,7 @@
                                 "inject": false
                             },
                             {
-                                "input": "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+                                "input": "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
                                 "bundleName": "pink",
                                 "inject": false
                             },

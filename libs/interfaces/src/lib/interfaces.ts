@@ -15,3 +15,9 @@ export interface SiteFeature {
     id: number | string;
     name: string;
 }
+
+// Should be theming module thing ?
+export interface Theme {
+    name: string;
+    loaded: boolean;
+}
