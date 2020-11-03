@@ -24,7 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule( {
     imports: [
@@ -42,7 +42,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         MatDividerModule,
         MatIconModule,
         MatDialogModule,
-        DragDropModule
+        DragDropModule,
+        MatToolbarModule,
     ],
     declarations: [ AppComponent, ConfigurationsPageComponent, FeaturesPageComponent, ConfirmDeleteDialog ],
     providers: [],

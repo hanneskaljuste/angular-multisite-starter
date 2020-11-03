@@ -67,6 +67,10 @@ export const themes: Theme[] = [
         name: 'default',
         loaded: false,
     },
+    {
+        name: 'amber',
+        loaded: false,
+    },
 ];
 
 

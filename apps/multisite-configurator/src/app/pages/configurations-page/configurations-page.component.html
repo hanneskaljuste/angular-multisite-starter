@@ -1,15 +1,5 @@
 <div class="site-block">
-    <mat-selection-list #sites [multiple]="false">
-        <mat-list-option *ngFor="let site of sites$ | async" [value]="site" (click)="selectSite(site)">
-            {{site.domain}}
-        </mat-list-option>
-    </mat-selection-list>
-</div>
-
-
-
-<mat-divider></mat-divider>
-<div class="site-block">
+    <h1>Add new site</h1>
     <form [formGroup]="siteForm" (ngSubmit)="onSubmit()">
         <p>
             <mat-form-field appearance="standard">
@@ -27,29 +17,36 @@
         <button type="button" mat-raised-button color="warn" (click)="resetSiteForm()">Reset</button>
     </form>
 </div>
-
-
-
-
 <mat-divider></mat-divider>
-<div class="site-block">
-    <div class="features-container" *ngIf="selectedSite">
-        <div class="example-container">
-            <h2>Available features</h2>
 
+<div class="site-block">
+    <h1>Sites</h1>
+    <mat-selection-list #sites [multiple]="false">
+        <mat-list-option *ngFor="let site of sites$ | async" [value]="site" (click)="selectSite(site)">
+            {{site.domain}} : {{site.theme}}
+        </mat-list-option>
+    </mat-selection-list>
+</div>
+<mat-divider></mat-divider>
+<div class="site-block" *ngIf="selectedSite">
+    <h1>Features</h1>
+    <div class="features-container">
+        <div class="example-container">
+            <h3>Available</h3>
             <div cdkDropList #availableFeaturesContainer="cdkDropList" [cdkDropListData]="availableFeatures"
-                [cdkDropListConnectedTo]="[siteFeaturesContainer]" class="example-list"
+                [cdkDropListConnectedTo]="[siteFeaturesContainer]" class="example-list available-features"
                 (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let feature of availableFeatures " cdkDrag>{{feature.name}}</div>
+                <div class="example-box available-feature" *ngFor="let feature of availableFeatures " cdkDrag>
+                    {{feature.name}}</div>
             </div>
         </div>
         <div class="example-container">
-            <h2>Site: {{selectedSite.domain}} features</h2>
-
+            <h3>{{selectedSite.domain}}</h3>
             <div cdkDropList #siteFeaturesContainer="cdkDropList" [cdkDropListData]="selectedSite.features"
-                [cdkDropListConnectedTo]="[availableFeaturesContainer]" class="example-list"
+                [cdkDropListConnectedTo]="[availableFeaturesContainer]" class="example-list site-features"
                 (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let feature of selectedSite.features" cdkDrag>{{feature.name}}</div>
+                <div class="example-box site-feature" *ngFor="let feature of selectedSite.features" cdkDrag>
+                    {{feature.name}}</div>
             </div>
         </div>
     </div>

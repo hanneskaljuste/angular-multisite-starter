@@ -7,7 +7,7 @@
 </div> -->
 <!-- <hk-header *ngIf="themeName" [theme]="themeName" [title]="themeName"></hk-header> -->
 <!-- <div>Message: {{ hello$ | async | json }}</div> -->
-<mat-toolbar color="primary" *ngIf="theme.hasAccessToFeature('dashboard') | async">
+<mat-toolbar color="primary" *ngIf="theme.hasAccessToFeature('toolbar') | async">
     <span>My Application</span>
 </mat-toolbar>
 <p *ngIf="theme.hasAccessToFeature('dashboard') | async">Dashboard</p>

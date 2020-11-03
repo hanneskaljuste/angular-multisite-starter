@@ -26,11 +26,15 @@
                             "apps/multisite/src/assets"
                         ],
                         "styles": [
-                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
                             "apps/multisite/src/styles.scss",
                             {
                                 "input": "apps/multisite/src/styles/themes/default/theme.scss",
                                 "bundleName": "default",
+                                "inject": false
+                            },
+                            {
+                                "input": "apps/multisite/src/styles/themes/amber/theme.scss",
+                                "bundleName": "amber",
                                 "inject": false
                             },
                             {
