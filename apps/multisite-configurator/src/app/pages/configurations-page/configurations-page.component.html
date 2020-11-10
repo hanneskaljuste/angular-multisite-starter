@@ -1,5 +1,6 @@
-<div class="site-block">
+<div class="site-block" [class.mat-elevation-z2]="true">
     <h1>Add new site</h1>
+    <mat-divider></mat-divider>
     <form [formGroup]="siteForm" (ngSubmit)="onSubmit()">
         <p>
             <mat-form-field appearance="standard">
@@ -13,40 +14,46 @@
                 <input matInput placeholder="Theme" formControlName="theme">
             </mat-form-field>
         </p>
+
         <button type="submit" mat-raised-button color="primary">Save</button>
         <button type="button" mat-raised-button color="warn" (click)="resetSiteForm()">Reset</button>
     </form>
 </div>
-<mat-divider></mat-divider>
 
-<div class="site-block">
+
+<div class="site-block" [class.mat-elevation-z2]="true">
     <h1>Sites</h1>
-    <mat-selection-list #sites [multiple]="false">
-        <mat-list-option *ngFor="let site of sites$ | async" [value]="site" (click)="selectSite(site)">
+    <mat-divider></mat-divider>
+    <mat-selection-list #sites [multiple]="false" [disableRipple]="true">
+        <mat-list-option [class.mat-elevation-z1]="site?.id === selectedSite?.id" *ngFor="let site of sites$ | async"
+            [value]="site" (click)="selectSite(site)">
             {{site.domain}} : {{site.theme}}
         </mat-list-option>
     </mat-selection-list>
 </div>
-<mat-divider></mat-divider>
-<div class="site-block" *ngIf="selectedSite">
+
+<div class="site-block" *ngIf="selectedSite" [class.mat-elevation-z2]="true">
     <h1>Features</h1>
+    <mat-divider></mat-divider>
     <div class="features-container">
         <div class="example-container">
             <h3>Available</h3>
-            <div cdkDropList #availableFeaturesContainer="cdkDropList" [cdkDropListData]="availableFeatures"
-                [cdkDropListConnectedTo]="[siteFeaturesContainer]" class="example-list available-features"
-                (cdkDropListDropped)="drop($event)">
+            <div [class.mat-elevation-z1]="true" cdkDropList #availableFeaturesContainer="cdkDropList"
+                [cdkDropListData]="availableFeatures" [cdkDropListConnectedTo]="[siteFeaturesContainer]"
+                class="example-list available-features" (cdkDropListDropped)="drop($event)">
                 <div class="example-box available-feature" *ngFor="let feature of availableFeatures " cdkDrag>
-                    {{feature.name}}</div>
+                    <p>{{feature.name}}</p>
+                </div>
             </div>
         </div>
         <div class="example-container">
             <h3>{{selectedSite.domain}}</h3>
-            <div cdkDropList #siteFeaturesContainer="cdkDropList" [cdkDropListData]="selectedSite.features"
-                [cdkDropListConnectedTo]="[availableFeaturesContainer]" class="example-list site-features"
-                (cdkDropListDropped)="drop($event)">
+            <div [class.mat-elevation-z1]="true" cdkDropList #siteFeaturesContainer="cdkDropList"
+                [cdkDropListData]="selectedSite.features" [cdkDropListConnectedTo]="[availableFeaturesContainer]"
+                class="example-list site-features" (cdkDropListDropped)="drop($event)">
                 <div class="example-box site-feature" *ngFor="let feature of selectedSite.features" cdkDrag>
-                    {{feature.name}}</div>
+                    <p>{{feature.name}}</p>
+                </div>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
-<div class="site-block">
+<div class="site-block" [class.mat-elevation-z2]="true">
     <h1>Add new feature</h1>
+
     <form [formGroup]="featureForm" (ngSubmit)="onSubmit()" autocomplete="off">
         <mat-form-field appearance="outline">
             <mat-label>Add new feature</mat-label>
@@ -9,10 +10,11 @@
         <!-- <button mat-button color="primary">Save</button> -->
     </form>
 </div>
-<mat-divider></mat-divider>
+<!-- <mat-divider></mat-divider> -->
 
-<div class="site-block">
+<div class="site-block" [class.mat-elevation-z2]="true">
     <h1>All features</h1>
+    <mat-divider></mat-divider>
     <mat-selection-list [multiple]="false">
         <mat-list-option *ngFor="let feature of features$ | async" [value]="feature" (click)="openDialog(feature)">
             {{feature.name}}

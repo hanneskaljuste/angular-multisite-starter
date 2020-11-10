@@ -73,3 +73,20 @@
 .features-container {
     display: flex;
 }
+
+
+.mat-list-single-selected-option {
+    background-color: #fff;
+}
+
+.mat-list-item {
+    margin: 10px 0;
+}
+
+.cdk-drag {
+    p {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+}

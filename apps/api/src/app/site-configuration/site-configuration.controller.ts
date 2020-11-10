@@ -30,7 +30,7 @@ export class SiteConfigurationController {
         return this.service.create( data );
     }
     @Put( ':id' )
-    async update ( @Param( 'id' ) id, @Body() data: SiteConfiguration ): Promise<UpdateResult> {
+    async update ( @Param( 'id' ) id, @Body() data: SiteConfiguration ): Promise<SiteConfiguration> {
         // data.id = Number( id );
         this.logger.log( 'Update #' + JSON.stringify( data ) )
         return this.service.update( data );

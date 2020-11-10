@@ -1,22 +1,26 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
 import { SiteFeature } from '../site-feature/site-feature.entity';
 
 
 @Entity( { name: 'site' } )
 export class SiteConfiguration {
+    @ApiProperty()
     @PrimaryGeneratedColumn( {
         type: 'int',
         name: 'id',
     } )
     id: number;
 
-
+    @ApiProperty()
     @Column( { unique: true } )
     domain: string;
 
+    @ApiProperty()
     @Column()
     theme: string;
 
+    @ApiProperty()
     @ManyToMany( type => SiteFeature, { cascade: true, eager: true } )
     @JoinTable( {
         name: 'site_feature',

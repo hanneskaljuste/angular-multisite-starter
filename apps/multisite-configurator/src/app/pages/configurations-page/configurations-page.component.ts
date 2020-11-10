@@ -72,7 +72,6 @@ export class ConfigurationsPageComponent implements OnInit {
         // this.selectedSite.features = this.done;
         this.http.put( `/api/site-configuration/${this.selectedSite.id}`, this.selectedSite ).subscribe(
             d => {
-                console.log( d );
                 this.sites$ = this.http.get<SiteConfiguration[]>( '/api/site-configuration/all' );
             },
             e => {

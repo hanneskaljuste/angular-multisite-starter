@@ -1,14 +1,17 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
 import { SiteConfiguration } from '../site-configuration/site-configuration.entity';
 
 @Entity( { name: 'feature' } )
 export class SiteFeature {
+    @ApiProperty()
     @PrimaryGeneratedColumn( {
         type: 'int',
         name: 'id',
     } )
     id: number;
 
+    @ApiProperty()
     @Column( 'varchar', {
         nullable: false,
         name: 'name',
