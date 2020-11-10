@@ -2,7 +2,9 @@ import { Controller, Get, Logger, Query } from '@nestjs/common';
 import { SiteConfiguration } from './site-configuration.entity';
 import { SiteConfigurationService } from './site-configuration.service';
 import { Post, Put, Delete, Body, Param } from '@nestjs/common';
-import { DeleteResult, UpdateResult } from 'typeorm';
+import { DeleteResult } from 'typeorm';
+import { ApiExtraModels, ApiOkResponse, ApiResponse, getSchemaPath } from '@nestjs/swagger';
+import { SiteFeature } from '../site-feature/site-feature.entity';
 
 
 @Controller( 'site-configuration' )
@@ -17,11 +19,14 @@ export class SiteConfigurationController {
 
 
     @Get( 'all' )
+    @ApiOkResponse( {
+        description: 'aaa',
+        type: SiteConfiguration,
+        isArray: true
+    } )
     all (): Promise<SiteConfiguration[]> {
         return this.service.findAll();
     }
-
-
 
     @Post()
     async create ( @Body() data: SiteConfiguration ): Promise<SiteConfiguration> {

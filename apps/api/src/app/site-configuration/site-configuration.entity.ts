@@ -20,7 +20,10 @@ export class SiteConfiguration {
     @Column()
     theme: string;
 
-    @ApiProperty()
+    @ApiProperty( {
+        type: SiteFeature,
+        isArray: true
+    } )
     @ManyToMany( type => SiteFeature, { cascade: true, eager: true } )
     @JoinTable( {
         name: 'site_feature',
