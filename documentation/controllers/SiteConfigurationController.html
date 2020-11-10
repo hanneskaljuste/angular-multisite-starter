@@ -139,14 +139,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;all&#x27;)<br /></code>
+                    <code>@Get(&#x27;all&#x27;)<br />@ApiOkResponse({description: &#x27;aaa&#x27;, type: SiteConfiguration, isArray: true})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.controller.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -193,8 +193,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.controller.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.controller.ts:32</a></div>
                 </td>
             </tr>
 
@@ -272,8 +272,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.controller.ts:45</a></div>
                 </td>
             </tr>
 
@@ -345,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.controller.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.controller.ts:16</a></div>
                 </td>
             </tr>
 
@@ -420,8 +420,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.controller.ts:38</a></div>
                 </td>
             </tr>
 
@@ -469,7 +469,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/SiteConfiguration.html" target="_self" >Promise&lt;SiteConfiguration&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -487,7 +487,9 @@
 import { SiteConfiguration } from &#x27;./site-configuration.entity&#x27;;
 import { SiteConfigurationService } from &#x27;./site-configuration.service&#x27;;
 import { Post, Put, Delete, Body, Param } from &#x27;@nestjs/common&#x27;;
-import { DeleteResult, UpdateResult } from &#x27;typeorm&#x27;;
+import { DeleteResult } from &#x27;typeorm&#x27;;
+import { ApiExtraModels, ApiOkResponse, ApiResponse, getSchemaPath } from &#x27;@nestjs/swagger&#x27;;
+import { SiteFeature } from &#x27;../site-feature/site-feature.entity&#x27;;
 
 
 @Controller( &#x27;site-configuration&#x27; )
@@ -502,11 +504,14 @@ export class SiteConfigurationController {
 
 
     @Get( &#x27;all&#x27; )
+    @ApiOkResponse( {
+        description: &#x27;aaa&#x27;,
+        type: SiteConfiguration,
+        isArray: true
+    } )
     all (): Promise&lt;SiteConfiguration[]&gt; {
         return this.service.findAll();
     }
-
-
 
     @Post()
     async create ( @Body() data: SiteConfiguration ): Promise&lt;SiteConfiguration&gt; {
@@ -515,7 +520,7 @@ export class SiteConfigurationController {
         return this.service.create( data );
     }
     @Put( &#x27;:id&#x27; )
-    async update ( @Param( &#x27;id&#x27; ) id, @Body() data: SiteConfiguration ): Promise&lt;UpdateResult&gt; {
+    async update ( @Param( &#x27;id&#x27; ) id, @Body() data: SiteConfiguration ): Promise&lt;SiteConfiguration&gt; {
         // data.id &#x3D; Number( id );
         this.logger.log( &#x27;Update #&#x27; + JSON.stringify( data ) )
         return this.service.update( data );

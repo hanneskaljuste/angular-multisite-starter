@@ -27,7 +27,8 @@
         "dep-graph": "nx dep-graph",
         "help": "nx help",
         "start:demo": "nx serve api && nx serve multisite --port=4200 && nx serve multisite --port=4201",
-        "compodoc": "npx compodoc -p tsconfig.base.json ."
+        "compodoc": "npx compodoc -p tsconfig.base.json .",
+        "compodoc:serve": "npx compodoc -p tsconfig.base.json . -s --port 4210"
     },
     "private": true,
     "dependencies": {

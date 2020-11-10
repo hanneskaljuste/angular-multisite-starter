@@ -133,13 +133,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column({unique: true})<br />
+                                @ApiProperty()<br />@Column({unique: true})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.entity.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.entity.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -169,13 +169,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ManyToMany(undefined, {cascade: true, eager: true})<br />@JoinTable({name: &#x27;site_feature&#x27;, joinColumn: undefined, inverseJoinColumn: undefined})<br />@JoinColumn({name: &#x27;feature_id&#x27;})<br />
+                                @ApiProperty({type: SiteFeature, isArray: true})<br />@ManyToMany(undefined, {cascade: true, eager: true})<br />@JoinTable({name: &#x27;site_feature&#x27;, joinColumn: undefined, inverseJoinColumn: undefined})<br />@JoinColumn({name: &#x27;feature_id&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.entity.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.entity.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -205,13 +205,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @PrimaryGeneratedColumn({type: &#x27;int&#x27;, name: &#x27;id&#x27;})<br />
+                                @ApiProperty()<br />@PrimaryGeneratedColumn({type: &#x27;int&#x27;, name: &#x27;id&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.entity.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.entity.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -241,13 +241,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column()<br />
+                                @ApiProperty()<br />@Column()<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.entity.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">apps/api/src/app/site-configuration/site-configuration.entity.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -266,25 +266,32 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, JoinColumn } from &#x27;typeorm&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, JoinColumn } from &#x27;typeorm&#x27;;
 import { SiteFeature } from &#x27;../site-feature/site-feature.entity&#x27;;
 
 
 @Entity( { name: &#x27;site&#x27; } )
 export class SiteConfiguration {
+    @ApiProperty()
     @PrimaryGeneratedColumn( {
         type: &#x27;int&#x27;,
         name: &#x27;id&#x27;,
     } )
     id: number;
 
-
+    @ApiProperty()
     @Column( { unique: true } )
     domain: string;
 
+    @ApiProperty()
     @Column()
     theme: string;
 
+    @ApiProperty( {
+        type: SiteFeature,
+        isArray: true
+    } )
     @ManyToMany( type &#x3D;&gt; SiteFeature, { cascade: true, eager: true } )
     @JoinTable( {
         name: &#x27;site_feature&#x27;,

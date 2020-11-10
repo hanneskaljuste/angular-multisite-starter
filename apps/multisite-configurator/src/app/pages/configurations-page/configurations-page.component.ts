@@ -10,29 +10,68 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
     styleUrls: [ './configurations-page.component.scss' ]
 } )
 export class ConfigurationsPageComponent implements OnInit {
+    /**
+     *
+     *
+     * @memberof ConfigurationsPageComponent
+     */
     sites$ = this.http.get<SiteConfiguration[]>( '/api/site-configuration/all' );
+
+    /**
+     *
+     *
+     * @memberof ConfigurationsPageComponent
+     */
     features$ = this.http.get<SiteFeature[]>( '/api/site-feature/all' );
 
+    /**
+     *
+     *
+     * @type {SiteFeature[]}
+     * @memberof ConfigurationsPageComponent
+     */
     allFeatures: SiteFeature[];
+
+    /**
+     *
+     *
+     * @type {SiteFeature[]}
+     * @memberof ConfigurationsPageComponent
+     */
     availableFeatures: SiteFeature[];
 
-
+    /**
+     *
+     *
+     * @type {SiteConfiguration}
+     * @memberof ConfigurationsPageComponent
+     */
     selectedSite: SiteConfiguration = null;
 
-
-
-
-    // todo = [];
-
-    // done = [];
-
+    /**
+     *
+     *
+     * @memberof ConfigurationsPageComponent
+     */
     siteForm = new FormGroup( {
         domain: new FormControl( '', Validators.required ),
         theme: new FormControl( '', Validators.required ),
     } );
 
 
+    /**
+     * Creates an instance of ConfigurationsPageComponent.
+     * @param {HttpClient} http
+     * @memberof ConfigurationsPageComponent
+     */
     constructor( private http: HttpClient ) { }
+
+
+    /**
+     *
+     *
+     * @memberof ConfigurationsPageComponent
+     */
     ngOnInit (): void {
         this.features$.subscribe( features => {
             if ( features ) {
@@ -43,6 +82,13 @@ export class ConfigurationsPageComponent implements OnInit {
         } )
         //
     }
+
+    /**
+     *
+     *
+     * @param {SiteConfiguration} site
+     * @memberof ConfigurationsPageComponent
+     */
     selectSite ( site: SiteConfiguration ) {
         console.log( site );
         // this.features$ = this.http.get<SiteFeature[]>( '/api/site-feature/all' );
@@ -55,6 +101,12 @@ export class ConfigurationsPageComponent implements OnInit {
         // this.done = this.selectedSite.features.map( f => f );
     }
 
+    /**
+     *
+     *
+     * @param {SiteConfiguration} site
+     * @memberof ConfigurationsPageComponent
+     */
     delete ( site: SiteConfiguration ) {
         this.http.delete( `/api/site-configuration/${site.id}` ).subscribe(
             d => {
@@ -68,6 +120,11 @@ export class ConfigurationsPageComponent implements OnInit {
     }
 
 
+    /**
+     *
+     *
+     * @memberof ConfigurationsPageComponent
+     */
     save () {
         // this.selectedSite.features = this.done;
         this.http.put( `/api/site-configuration/${this.selectedSite.id}`, this.selectedSite ).subscribe(
@@ -82,6 +139,12 @@ export class ConfigurationsPageComponent implements OnInit {
     }
 
 
+    /**
+     *
+     *
+     * @param {CdkDragDrop<string[]>} event
+     * @memberof ConfigurationsPageComponent
+     */
     drop ( event: CdkDragDrop<string[]> ) {
         if ( event.previousContainer === event.container ) {
             moveItemInArray( event.container.data, event.previousIndex, event.currentIndex );
@@ -96,6 +159,11 @@ export class ConfigurationsPageComponent implements OnInit {
 
 
 
+    /**
+     *
+     *
+     * @memberof ConfigurationsPageComponent
+     */
     onSubmit () {
         // TODO: Use EventEmitter with form value
         console.warn( this.siteForm.value );
@@ -111,6 +179,11 @@ export class ConfigurationsPageComponent implements OnInit {
         );
     }
 
+    /**
+     *
+     *
+     * @memberof ConfigurationsPageComponent
+     */
     resetSiteForm () {
         this.siteForm.reset();
     }

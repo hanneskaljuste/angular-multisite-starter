@@ -1,8 +1,20 @@
+/**
+ *
+ *
+ * @export
+ * @interface Message
+ */
 export interface Message {
     message: string;
 }
 
 
+/**
+ *
+ *
+ * @export
+ * @interface SiteConfiguration
+ */
 export interface SiteConfiguration {
     id: number | string;
     theme: string;
@@ -11,6 +23,12 @@ export interface SiteConfiguration {
 }
 
 
+/**
+ *
+ *
+ * @export
+ * @interface SiteFeature
+ */
 export interface SiteFeature {
     id: number | string;
     name: string;
